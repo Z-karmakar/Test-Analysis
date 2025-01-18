@@ -1,0 +1,260 @@
+#:import rgba kivy.utils.get_color_from_hex
+<RoundedButton@Button>:
+    background_color:(0,0,0,0)
+    background_normal:''
+    color:rgba('#fd6a02') if self.state =='normal' else rgba('ffffff')
+    canvas.before:
+        Color:  
+            rgba:rgba('#fd6a02') 
+        Line:
+            rounded_rectangle:(self.pos[0],self.pos[1],self.size[0],self.size[1],15)
+            width:1.2 
+<StudentButton>:
+    background_color:(0,0,0,0) 
+    background_normal:''
+    font_size:"15dp"
+    size_hint_y:None
+    text_size: self.width, None
+    height: self.texture_size[1]
+    halign:"center"
+
+<RoundedButton1@Button>:
+    background_color:(0,0,0,0)
+    background_normal:''
+    color:rgba('#ffffff')
+    canvas.before:
+        Color:  
+            rgba:rgba('#fd6a02') if self.state =='normal' else rgba('0000ff')
+        RoundedRectangle:
+            size:self.size
+            pos:self.pos
+            radius:[15]
+
+<TableLabel>:   
+    size_hint:None,None
+    width:140
+    height:40
+    color:(0,0,0,1)
+
+<MainScreen>:
+    GridLayout:
+        cols:2
+        rows:1
+        canvas.before:
+            Rectangle:
+                pos: self.pos
+                size:self.size
+                source: 'images (1).jpg'
+        GridLayout:
+            cols:2
+            rows:1
+            spacing:"5dp"
+            GridLayout:
+                cols:1
+                rows:3
+                size_hint:.5,1
+                spacing:10
+                Label:
+                    text:"Test\nAnalysis"
+                    font_name:"Impact"
+                    font_size:"100dp"
+                    size_hint:1,.5
+                GridLayout:
+                    cols:2
+                    rows:1
+                    size_hint:1,.05
+                    RoundedButton:
+                        text:"Submit File"
+                        size_hint:None,1
+                        width:"100dp"
+                        on_release:root.file_chooser1()
+                    ScrollView:
+                        size_hint:.7,1
+                        canvas.before:
+                            Color:
+                                rgba:rgba('#80808080')
+                            Rectangle:
+                                size:self.size
+                                pos:self.pos
+                        Label:
+                            text:app.s_0
+                            font_name:"Georgia"
+                            size_hint_y:None
+                            height:self.texture_size[1]
+                            text_size:self.width,None
+                            color:rgba('#ffffff')
+                AnchorLayout:
+                    anchor_x:"center"
+                    anchor_y:"top"
+                    size_hint:1,.4
+                    RoundedButton1:
+                        text:"Enter"
+                        size_hint_y:None
+                        height:40
+                        size_hint_x:None
+                        width:150
+                        on_release:root.show_loading_popup()
+            ScrollView:
+                size_hint:.5,1
+                canvas.before:
+                    Color:
+                        rgba:(0,0,0,.7)
+                    Rectangle:
+                        size: self.size
+                        pos: self.pos
+                GridLayout:
+                    cols:1
+                    rows:9
+                    size_hint:None,None
+                    height:self.minimum_height
+                    width:self.minimum_width
+                    padding:"20dp"
+                    Label:
+                        text:"[b]Welcome to Test Analysis![/b]\n"
+                        markup:True
+                        font_size:20
+                        size_hint_y:None
+                        height:self.texture_size[1]
+                        text_size:self.width,None
+                    Label:
+                        text:"[b]Introduction:[/b]\n\nHello and welcome to Test Analysis - your dedicated platform for streamlined test data processing! Whether you're an educator or student we're here to make the analysis of test results a breeze.\n"
+                        markup:True
+                        font_size:20
+                        size_hint_y:None
+                        height:self.texture_size[1]
+                        text_size:self.width,None
+                    Label:
+                        text:"[b]Effortless Test Data Processing:[/b]\n\nTest Analysis is designed to simplify the handling of your test data. Submit your data in CSV format with a structured layout, following the example provied below. The app will take it from there, generating insightful analyses to help you make informed decisions based on the performance of your students.\n"
+                        markup:True
+                        font_size:20
+                        size_hint_y:None
+                        height:self.texture_size[1]
+                        text_size:self.width,None
+                    Label:
+                        text:"[b]File Format Guidelines:[/b]\n\nPlease ensure your input files are in CSV format, with a header containing \"Student\" and subject columns. Each student's marks should be formatted as \"Given Marks/Total Marks\", when naming file and indvidual student names, observe the following rules:names cannnot contain special characters and and the first character cannot be a number. Additionally, the last three lettters of the file name should represent the type of exam(e.g.,MT1,MT2) and must not contain special characters, and the first letter must not be a number.\n"
+                        markup:True
+                        font_size:20
+                        size_hint_y:None
+                        height:self.texture_size[1]
+                        text_size:self.width,None
+                    Image:
+                        source:"csv_format.jpeg"
+                        size_hint:None,None
+                        size:600,300
+                        allow_stretch:True   
+                        keep_ratio:False
+                    Label:
+                        text:"\n"
+                        markup:True
+                        font_size:20
+                        size_hint_y:None
+                        height:self.texture_size[1]
+                        text_size:self.width,None 
+                    Image:
+                        source:"files_name.png"
+                        size_hint:None,None
+                        size:600,100
+                        allow_stretch:True   
+                        keep_ratio:False 
+                    Label:
+                        text:"\n[b]Submitting Files:[/b]\n\nSubmit files individually by pressing the submission button for each file. Our system will handle each file sparately, ensuring accurate and comprehensive examination of your data.\n"
+                        markup:True
+                        font_size:20
+                        size_hint_y:None
+                        height:self.texture_size[1]
+                        text_size:self.width,None 
+                    Label:
+                        text:"[b]Happy analysing![/b]\n\n[b]The Team Test Analysis[/b]\n"
+                        markup:True
+                        font_size:20
+                        size_hint_y:None
+                        height:self.texture_size[1]
+                        text_size:self.width,None 
+
+
+<TableScreen>:
+    GridLayout:
+        cols:1
+        rows:2
+        canvas.before:
+            Rectangle:
+                pos: self.pos
+                size: self.size
+                source: 'images (1).jpg'
+        AnchorLayout:
+            size_hint:1,.1
+            anchor_x:"left"
+            anchor_y:"top"
+            RoundedButton:
+                text:"Back"
+                size_hint_y:None
+                height:"40dp"
+                size_hint_x:None
+                width:"100dp"
+                on_release:
+                    root.show_loading_popup()
+                    root.manager.transition.direction='right'
+                    root.manager.current='mainscreen'
+        GridLayout:
+            size_hint:1,.9
+            cols:2
+            rows:1
+            GridLayout:
+                rows:2
+                size_hint:.4,1
+                Label:
+                    text:"STUDENTS"
+                    size_hint_y:.05
+                    font_name:"Georgia"
+                    color:rgba('#ffffff')
+                    canvas.before:
+                        Color:
+                            rgba:(0,0,0,.5)
+                        Rectangle:
+                            size: self.size
+                            pos: self.pos
+                ScrollView:
+                    size_hint:1,.7
+                    scroll_type:['bars'] 
+                    bar_width:'15dp'
+                    canvas.before:
+                        Color:
+                            rgba:(0,0,0,.5)
+                        Rectangle:
+                            size:self.size
+                            pos:self.pos
+                    Student_Selection:
+                        cols:1
+                        size_hint_y:None
+            GridLayout:
+                cols:1
+                rows:2
+                spacing:3
+                ScrollView:
+                    size_hint:1,.5
+                    canvas.before:
+                        Color:
+                            rgba:(1,1,1,.4)
+                        Rectangle:
+                            size:self.size
+                            pos:self.pos
+                    Tablelayout:
+                        size_hint:None,None
+                        height:self.minimum_height
+                        width:self.minimum_width
+                ScrollView:
+                    size_hint:1,.5
+                    canvas.before:
+                        Color:
+                            rgba:(1,1,1,.4)
+                        Rectangle:
+                            size:self.size
+                            pos:self.pos
+                    Label:
+                        text:app.review
+                        font_name:"Georgia"
+                        font_size:"20dp"
+                        size_hint_y:None
+                        height:self.texture_size[1]
+                        text_size:self.width,None
+                        color:(0,0,0,1)
